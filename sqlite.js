@@ -51,6 +51,24 @@ module.exports = {
     }
   },
 
+  // Get hydrometric_station in the database
+  getHydrometricStation: async () => {
+    try {
+      return await db.all("SELECT * from hydrometric_station");
+    } catch (dbError) {
+      console.error(dbError);
+    }
+  },
+  
+  // Get waterlevel in the database
+  getWaterLevel: async () => {
+    try {
+      return await db.all("SELECT * from waterlevel");
+    } catch (dbError) {
+      console.error(dbError);
+    }
+  },
+
   // Add new message
   addMessage: async message => {
     let success = false;
