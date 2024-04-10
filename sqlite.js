@@ -42,28 +42,15 @@ dbWrapper
 // Server script calls these methods to connect to the db
 module.exports = {
   
+  /**
+   *  测试数据库的接口
+   * 
+   */
+
   // Get the messages in the database
   getMessages: async () => {
     try {
       return await db.all("SELECT * from Messages");
-    } catch (dbError) {
-      console.error(dbError);
-    }
-  },
-
-  // Get hydrometric_station in the database
-  getHydrometricStation: async () => {
-    try {
-      return await db.all("SELECT * from hydrometric_station");
-    } catch (dbError) {
-      console.error(dbError);
-    }
-  },
-  
-  // Get waterlevel in the database
-  getWaterLevel: async () => {
-    try {
-      return await db.all("SELECT * from waterlevel");
     } catch (dbError) {
       console.error(dbError);
     }
@@ -106,5 +93,28 @@ module.exports = {
       console.error(dbError);
     }
     return success.changes > 0 ? true : false;
-  }
+  },
+
+    /**
+     * 
+     * 水文站数据库的接口
+     */
+
+    // Get hydrometric_station in the database
+    getHydrometricStation: async () => {
+      try {
+        return await db.all("SELECT * from hydrometric_station");
+      } catch (dbError) {
+        console.error(dbError);
+      }
+    },
+    
+    // Get waterlevel in the database
+    getWaterLevel: async () => {
+      try {
+        return await db.all("SELECT * from waterlevel");
+      } catch (dbError) {
+        console.error(dbError);
+      }
+    },
 };
