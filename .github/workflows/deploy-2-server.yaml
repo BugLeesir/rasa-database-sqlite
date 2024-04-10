@@ -21,8 +21,8 @@ jobs:
     - name: Deploy to Server
       run: |
         ssh -o StrictHostKeyChecking=no -p 22 bugleesir@207.46.143.24 <<EOF
-        cd /home/bugleesir/sqlite-project/rasa-database-sqlite
         git config --global --add safe.directory /home/bugleesir/sqlite-project/rasa-database-sqlite
+        cd /home/bugleesir/sqlite-project/rasa-database-sqlite
         git pull
         screen -S sqlite-rasa-session -X quit
         screen -S sqlite-rasa-session -d -m node server.js
