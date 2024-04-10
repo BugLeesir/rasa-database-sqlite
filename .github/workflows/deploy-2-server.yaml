@@ -1,0 +1,28 @@
+name: Deploy to Server
+
+on:
+  push:
+    branches:
+      - sqlite-server
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Install SSH key
+      uses: webfactory/ssh-agent@v0.5.3
+      with:
+        ssh-private-key: ${{ secrets.SQLITE_RASA_KEY }}
+
+    - name: Deploy to Server
+      run: |
+        ssh -o StrictHostKeyChecking=no -p 22 user@207.46.143.24 <<EOF
+        cd /home/bugleesir/sqlite-project/rasa-database-sqlite
+        git pull
+        screen -S sqlite-rasa-session -X quit
+        screen -S sqlite-rasa-session -d -m node server.js
+        EOF
