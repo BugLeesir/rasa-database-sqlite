@@ -102,7 +102,7 @@ fastify.get("/hydrometric_station", async (request, reply) => {
   reply.status(status).send(data);
 });
 
-fastify.get("/hydrometric_station", async (request, reply) =>{
+fastify.get("/hydrometric_station_by_name", async (request, reply) =>{
   let data = {};
   data.hydrometric_station = await db.getHydrometricStationByName();
   console.log(data.hydrometric_station);
