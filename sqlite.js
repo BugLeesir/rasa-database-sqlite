@@ -126,4 +126,13 @@ module.exports = {
         console.error(dbError);
       }
     },
+
+    // Get waterLevel by StationId
+    getWaterLevelByStationId: async stationId => {
+      try {
+        return await db.all("SELECT * from waterlevel where station_id = ?", stationId);
+      } catch (dbError) {
+        console.error(dbError);
+      }
+    }
 };

@@ -120,3 +120,12 @@ fastify.get("/waterlevel", async (request, reply) => {
   const status = data.error ? 400 : 200;
   reply.status(status).send(data);
 });
+
+fastify.get("/waterlevelById", async (request, reply) =>{
+  let data = {};
+  data.waterlevel = await db.getWaterLevelByStationId(request.query.stationId);
+  console.log(data.waterlevel);
+  if(!data.waterlevel) data.error = errorMessage;
+  const status = data.error ? 400 : 200;
+  reply.status(status).send(data);
+});
