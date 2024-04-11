@@ -102,6 +102,15 @@ fastify.get("/hydrometric_station", async (request, reply) => {
   reply.status(status).send(data);
 });
 
+fastify.get("/hydrometric_station", async (request, reply) =>{
+  let data = {};
+  data.hydrometric_station = await db.getHydrometricStationByName();
+  console.log(data.hydrometric_station);
+  if(!data.hydrometric_station) data.error = errorMessage;
+  const status = data.error ? 400 : 200;
+  reply.status(status).send(data);
+});
+
 // Return the waterlevel from the database helper script - no auth
 fastify.get("/waterlevel", async (request, reply) => {
   let data = {};
