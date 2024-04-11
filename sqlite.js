@@ -117,4 +117,13 @@ module.exports = {
         console.error(dbError);
       }
     },
+
+    // Get hydrometric_station by name
+    getHydrometricStationByName: async name => {
+      try {
+        return await db.all("SELECT * from hydrometric_station where name = ?", name);
+      } catch (dbError) {
+        console.error(dbError);
+      }
+    },
 };
