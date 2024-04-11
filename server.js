@@ -104,7 +104,7 @@ fastify.get("/hydrometric_station", async (request, reply) => {
 
 fastify.get("/hydrometric_station_by_name", async (request, reply) =>{
   let data = {};
-  data.hydrometric_station = await db.getHydrometricStationByName(request.name);
+  data.hydrometric_station = await db.getHydrometricStationByName(request.query.name);
   console.log(data.hydrometric_station);
   if(!data.hydrometric_station) data.error = errorMessage;
   const status = data.error ? 400 : 200;
