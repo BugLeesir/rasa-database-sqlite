@@ -121,7 +121,7 @@ fastify.get("/waterlevel", async (request, reply) => {
   reply.status(status).send(data);
 });
 
-fastify.get("/waterlevelById", async (request, reply) =>{
+fastify.get("/waterlevel_by_id", async (request, reply) =>{
   let data = {};
   data.waterlevel = await db.getWaterLevelByStationId(request.query.stationId);
   console.log(data.waterlevel);
